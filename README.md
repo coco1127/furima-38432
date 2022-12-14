@@ -3,10 +3,8 @@
 |Column	             |Type	  |Options
 |--------------------|--------|---------------
 |nickname	           |string	|null: false
-|email	             |string	|null: false
+|email	             |string	|unique: true
 |encrypted_password	 |string	|null: false
-|user_image	         |string	|
-|introduction	     	 |text    |
 |family_name	       |string	|null: false
 |first_name	         |string	|null: false
 |family_name_kana	   |string	|null: false
@@ -18,7 +16,7 @@
 - belongs_to :card dependent: :destroy
 
 
-## destinationテーブル
+## destinationsテーブル
 
 |Column	             |Type	     |Options
 |--------------------|-----------|---------------------------------
@@ -28,16 +26,14 @@
 |family_name_kana  	 |string	   |null: false
 |first_name_kane	   |string	   |null: false
 |post_code	         |string	   |null: false
-|prefecture	         |string	   |null: false
+|prefecture	         |integer	   |null: false
 |city	               |string	   |null: false
 |address	           |string	   |null: false
 |building_name	     |string	   |
-|phone_number      	 |string	   |
-
-- belongs_to :user
+|phone_number      	 |string	   |null: false
 
 
-## cardテーブル
+## cardsテーブル
 |Column 	           |Type       |Options
 |--------------------|-----------|--------------------------------
 |user_id	           |integer	   |null: false, foreign_key: true
@@ -46,7 +42,7 @@
 
 - belongs_to :user
 
-## categoryテーブル
+## categorysテーブル
 |Column	             |Type      	|Options
 |--------------------|------------|------------------------------
 |name	               |string      |null: false
@@ -54,13 +50,13 @@
 
 - has_many :items
 
-## itemテーブル
+## itemsテーブル
 
 |Column           	 |Type	       |Options
 |--------------------|-------------|-----------------------------
 |name	               |string	     |null: false
-|price	             |string	     |null: false
-|description	       |string	     |null: false
+|price	             |integer	     |null: false
+|description	       |text　	     |null: false
 |status	             |string	     |null: false
 |size	               |string     	 |null: false
 |shipping_cost  	   |string	     |null: false
@@ -77,22 +73,13 @@
 - belongs_to :brand dependent: :destroy
 - has_many :images dependent: :destroy
 
-- belongs_to_active_hash :prefecture
 
-## imageテーブル
+
+## imagesテーブル
 |Column	            |Type       	   |Options
 |-------------------|----------------|---------------------------------
 |image	            |string   	     |null: false
 |product_id	        |integer     	   |null: false, foreign_key: true
 
 - belongs_to :product
-
-
-## brandテーブル
-|Column       	  |Type            	|Options
-|-----------------|-----------------|------------------------------
-|name	            |string	          |index: true
-
-- has_many :items
-
 
