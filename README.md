@@ -1,85 +1,59 @@
 ## users テーブル
+|Column	               |Type	  |Options
+|----------------------|--------|---------------
+|nickname	             |string	|null: false
+|password              |string	|null: false
+|password_confirmation |string	|null: false
+|email	               |string	|null: false,unique: true
+|first_name	           |string	|null: false
+|family_name	         |string	|null: false
+|first_name_kana	     |string	|null: false
+|family_name_kana	     |string	|null: false
+|post_code             |string	|null: false
+|city                  |string	|null: false
+|house_number          |string	|null: false
+|building_name         |string  |
+|phone_number          |string	|unique: true
+|birth_date            |date	  |null: false    
 
-|Column	             |Type	  |Options
-|--------------------|--------|---------------
-|nickname	           |string	|null: false
-|email	             |string	|unique: true
-|encrypted_password	 |string	|null: false
-|family_name	       |string	|null: false
-|first_name	         |string	|null: false
-|family_name_kana	   |string	|null: false
-|first_name_kana	   |string	|null: false
-|birth_day	         |date	  |null: false
-
-- has_many :products dependent: :destroy
-- belongs_to :destination dependent: :destroy
-- belongs_to :card dependent: :destroy
-
-
-## destinationsテーブル
-
-|Column	             |Type	     |Options
-|--------------------|-----------|---------------------------------
-|user_id	           |integer    |null: false, foreign_key: true
-|family_name	       |string     |null: false
-|first_name	         |string	   |null: false
-|family_name_kana  	 |string	   |null: false
-|first_name_kane	   |string	   |null: false
-|post_code	         |string	   |null: false
-|prefecture	         |integer	   |null: false
-|city	               |string	   |null: false
-|address	           |string	   |null: false
-|building_name	     |string	   |
-|phone_number      	 |string	   |null: false
+- has_many :seller_items
+- has_many :buyer_items
+- has_one :profile
+- has_one :purchase_history
 
 
-## cardsテーブル
+## Purchase_historiesテーブル
 |Column 	           |Type       |Options
 |--------------------|-----------|--------------------------------
-|user_id	           |integer	   |null: false, foreign_key: true
-|customer_id	       |string	   |null: false
-|card_id	           |string	   |null: false
+|user                |references |null: false, foreign_key: true
+|item                |string	   |null: false, foreign_key: true
 
 - belongs_to :user
-
-## categorysテーブル
-|Column	             |Type      	|Options
-|--------------------|------------|------------------------------
-|name	               |string      |null: false
-|ancestry	           |string	    |
-
 - has_many :items
 
-## itemsテーブル
 
+## itemsテーブル
 |Column           	 |Type	       |Options
 |--------------------|-------------|-----------------------------
 |name	               |string	     |null: false
-|price	             |integer	     |null: false
-|description	       |text　	     |null: false
-|status	             |string	     |null: false
-|size	               |string     	 |null: false
-|shipping_cost  	   |string	     |null: false
-|shipping_days     	 |string	     |null: false
-|prefecture_id	     |string	     |null: false
-|judgment	           |string	     |
-|category_id	       |integer      |null: false, foreign_key: true
-|brand_id	           |integer      |null: false, foreign_key: true
-|shipping_id	       |integer    	 |null: false, foreign_key: true
-|user_id	           |integer  	   |null: false, foreign_key: true
+|introduction        |text         |null: false
+|price               |integer	     |null: false
+|item_condition_id   |integer	     |null: false
+|preparation_day_id  |integer	     |null: false
+|postage_payer_id    |integer	     |null: false
+|category_id         |integer	     |null: false
+|trading_status_id   |integer	     |null: false
+|seller              |references   |null: false, foreign_key: true
+|buyer               |references   |null: false, foreign_key: true
 
-- belongs_to :user dependent: :destroy
-- belongs_to :category dependent: :destroy
-- belongs_to :brand dependent: :destroy
-- has_many :images dependent: :destroy
+- belongs_to :seller ,class_name: "User" 
+- belongs_to :buyer ,class_name: "User" 
+- belongs_to :category
+- has_many :images 
+- belongs_to_active_hash: item_condition
+- belongs_to_active_hash: preparation_day 
+- belongs_to_active_hash: postage_payer   
+- belongs_to_active_hash: category 
+- belongs_to_active_hash: trading_status
 
-
-
-## imagesテーブル
-|Column	            |Type       	   |Options
-|-------------------|----------------|---------------------------------
-|image	            |string   	     |null: false
-|product_id	        |integer     	   |null: false, foreign_key: true
-
-- belongs_to :product
 
