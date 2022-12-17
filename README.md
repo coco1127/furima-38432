@@ -11,7 +11,7 @@
 |birth_date            |date	  |null: false    
 
 - has_many : items
-- has_one : purchase_history
+- has_many : purchase_histories
 
 
 ## purchase_historiesテーブル
@@ -44,10 +44,11 @@
 - belongs_to_active_hash: postage_payer   
 - belongs_to_active_hash: category 
 - belongs_to_active_hash: trading_status
-- has_many : purchase_history
+- has_one : purchase_history
+- belongs_to :user
 
 
-## shipping_addressテーブル
+## shipping_addressesテーブル
 |Column           	 |Type	       |Options
 |--------------------|-------------|-----------------------------
 |post_code           |string	     |null: false
