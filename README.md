@@ -12,7 +12,6 @@
 
 - has_many : items
 - has_one : purchase_history
-- has_one : seller
 
 
 ## purchase_historiesテーブル
@@ -37,27 +36,15 @@
 |postage_payer_id    |integer	     |null: false
 |category_id         |integer	     |null: false
 |trading_status_id   |integer	     |null: false
-|seller              |references   |null: false, foreign_key: true
+|user                |references   |null: false, foreign_key: true
 
-- belongs_to :seller
-- belongs_to :category
-- has_many :images 
+- has_one_attached :image
 - belongs_to_active_hash: item_condition
 - belongs_to_active_hash: preparation_day 
 - belongs_to_active_hash: postage_payer   
 - belongs_to_active_hash: category 
 - belongs_to_active_hash: trading_status
-- has_one : purchase_history
-
-
-##　sellersテーブル
-|Column           	 |Type	       |Options
-|--------------------|-------------|-----------------------------
-|item                |references	 |null: false, foreign_key: true
-|user                |references   |null: false, foreign_key: true
-
-- has_one :item
-- belongs_to : user
+- has_many : purchase_history
 
 
 ## shipping_addressテーブル
@@ -67,9 +54,9 @@
 |city                |string	     |null: false
 |house_number        |string	     |null: false
 |building_name       |string	     
-|phone_number        |string	     |unique: true
-|purchase_histories  |references   |null: false, foreign_key: true
+|phone_number        |string	     |null: false
+|trading_status_id   |integer	     |null: false
+|purchase_history 　 |references   |null: false, foreign_key: true
 
 - belongs_to : purchase_history
-
-
+- belongs_to_active_hash: trading_status
