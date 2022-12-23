@@ -63,3 +63,4 @@ end
   gem 'pg'
 end
 gem 'devise'
+gem 'pry-rails'
