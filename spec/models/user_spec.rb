@@ -81,7 +81,7 @@ RSpec.describe User, type: :model do
       it 'first_name_kanaがカナ以外では登録できない' do
         @user.first_name_kana = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid.\n                                Input full-width characters.")
+        expect(@user).to include("First name kana is invalid.\n                                Input full-width characters.")
       end
       it 'birth_dateが空では登録できない' do
         @user.birth_date = ''
