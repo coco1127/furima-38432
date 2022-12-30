@@ -9,11 +9,11 @@ has_one_attached :image
 has_one :purchase_history
 belongs_to :user
 
-validates :item_condition_id, numericality: { other_than: 1 , message: "Sales status can't be blank"} 
-validates :preparation_day_id, numericality:  { other_than: 1 , message: "Scheduled delivery can't be blank"} 
-validates :postage_payer_id, numericality:  { other_than: 1 , message: "Shipping fee status can't be blank"} 
-validates :category_id, numericality:  { other_than: 1 , message: "Category can't be blank"} 
-validates :trading_status_id, numericality:  { other_than: 1 , message: "Prefecture can't be blank"} 
+validates :item_condition_id, numericality: { other_than: 1 , message: "can't be blank"} 
+validates :preparation_day_id, numericality:  { other_than: 1 , message: "an't be blank"} 
+validates :postage_payer_id, numericality:  { other_than: 1 , message: "can't be blank"} 
+validates :category_id, numericality:  { other_than: 1 , message: "can't be blank"} 
+validates :trading_status_id, numericality:  { other_than: 1 , message: "can't be blank"} 
 
 validates :name,                   presence: true
 validates :introduction,           presence: true
@@ -27,4 +27,5 @@ validates :preparation_day,        presence: true
 validates :postage_payer,          presence: true
 validates :category,               presence: true
 validates :trading_status,         presence: true
+validates :price,                  presence: true
 end
