@@ -28,4 +28,8 @@ validates :postage_payer,          presence: true
 validates :category,               presence: true
 validates :trading_status,         presence: true
 validates :price,                  presence: true
+
+def was_attached?
+  self.image.attached?
+end
 end
