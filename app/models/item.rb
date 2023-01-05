@@ -17,9 +17,9 @@ validates :trading_status_id, numericality:  { other_than: 1 , message: "can't b
 
 validates :name,                   presence: true
 validates :introduction,           presence: true
-validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Price is invalid. Input half-width characters' }
+validates :price,                  format: { with: /\A[0-9]+\z/, message: 'Price is invalid. Input half-width characters' }
 validates :price,
-            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
 
 validates :image,                  presence: true
 validates :item_condition,         presence: true
