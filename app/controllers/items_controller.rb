@@ -25,8 +25,16 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-  end
+end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -34,5 +42,5 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name,:introduction,:price,:item_condition_id,:preparation_day_id,:postage_payer_id,:category_id,:trading_status_id,:image).merge(user_id: current_user.id)
 
   end
-
 end
+
