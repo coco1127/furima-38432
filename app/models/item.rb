@@ -6,8 +6,8 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :trading_status
   has_one_attached :image
-  has_one :purchase_history
-  belongs_to :user
+  has_one     :purchase_history
+  belongs_to  :user
 
   validates :item_condition_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :preparation_day_id, numericality:  { other_than: 1, message: "an't be blank" }
