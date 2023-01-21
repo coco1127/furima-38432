@@ -10,6 +10,7 @@ class PurchasesController < ApplicationController
     @item = Item.find(params[:item_id])
     @purchase_shipping = PurchaseShipping.new(purchase_params)
     if @purchase_shipping.valid?
+      pay_item
       @purchase_shipping.save
       redirect_to root_path 
     else
