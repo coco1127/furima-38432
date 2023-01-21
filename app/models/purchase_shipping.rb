@@ -1,6 +1,6 @@
 class PurchaseShipping 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :city, :house_number, :building_name, :phone_number,:trading_status_id,:purchase_history_id
+  attr_accessor :user_id, :item_id, :post_code, :city, :house_number, :building_name, :phone_number,:trading_status_id,:purchase_history_id,:token
   
 
   with_options presence: true do
@@ -11,7 +11,7 @@ class PurchaseShipping
     #validates :purchase_history_id
     validates :user_id
     validates :item_id
-    #validates :token
+    validates :token
   end
     validates :trading_status_id, numericality:  { other_than: 1, message: "can't be blank" }
              
