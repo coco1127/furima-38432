@@ -40,10 +40,8 @@ class PurchasesController < ApplicationController
 
 
   def move_to_index
-      if  @item.purchase_history != nil || current_user.id = @item.user.id 
+      if  @item.purchase_history != nil || current_user.id == @item.user.id 
           redirect_to root_path
-          else
-            render :index
-  end
+      end
   end
 end
