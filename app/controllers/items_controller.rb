@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
   def edit
     if set_user && @item.purchase_history != nil 
       redirect_to root_path
+     elsif 
+      current_user.id != @item.user.id 
+      redirect_to root_path
     else
       render :edit
     end
