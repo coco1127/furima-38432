@@ -38,9 +38,13 @@ class PurchasesController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  
+
   def move_to_index
-      if current_user == @item.user && @item.purchase_history.id != nil 
+      if current_user == @item.user && @item.purchase_history != nil 
+      elsif 
+        current_user.id != @item.user.id 
+        redirect_to root_path
+    else
       redirect_to root_path
     end
   end
